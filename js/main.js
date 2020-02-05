@@ -24,13 +24,10 @@ function cities(){
             population: 27244
         }
     ];
-
     //append the table element to the div
     $("#mydiv").append("<table>");
-
     //append a header row to the table
     $("table").append("<tr>");
-
     //add the "City" and "Population" columns to the header row
     $("tr").append("<th>City</th><th>Population</th>");
 
@@ -73,7 +70,7 @@ function cities(){
     $('table').on('click', function(){
         alert('Madison Rocks! Go Badgers!');
     });
-    
+
     //alias method for the click event listener
     $('table').click(function(){
         alert('Visit Superior and see the big lake!');

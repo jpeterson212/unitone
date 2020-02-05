@@ -1,5 +1,3 @@
-// Added comments above exisitng comments provided.
-
 // This function is connected to the index.html which is
 //		in the folder above this .js file and will run the 'cities' function
 // 		I built below.
@@ -9,13 +7,12 @@ function initialize(){
 		cities();
 };
 
-//function to create a table with cities and their populations
+// This 'cities' function is built to create a table with cities names and their populations
 function cities(){
 
 // Here we combine the city data and population data into one
 // 		condensed data set, using the least amount of code while
 // 		functioning the same as example2.3.
-	//define two arrays for cities and population
 		var cityPop = [
 				{
 						city: 'Madison',
@@ -35,15 +32,12 @@ function cities(){
 				}
 		];
 
-		//append the table element to the div
+// The next step is to add table elements to the existing data.
 		$("#mydiv").append("<table>");
-
-		//append a header row to the table
+// Next we add a header to the table.
 		$("table").append("<tr>");
-
-		//add the "City" and "Population" columns to the header row
+// Then we added the labels of 'City' and 'Population.''
 		$("tr").append("<th>City</th><th>Population</th>");
-
 		//loop to add a new row for each city
   	for (var i = 0; i < cityPop.length; i++){
         //assign longer html strings to a variable
@@ -51,19 +45,20 @@ function cities(){
         //add the row's html string to the table
         $("table").append(rowHtml);
     };
-//This above is using the main.js code that we did in lab to
-// 			structure our table into rows and columns 
-    addColumns(cityPop);
-    addEvents();
 };
+// The addColumns and addEvents will be the two functions we will be calling.
+addColumns(cityPop);
+addEvents();
 
+// Below is the addColumns function, which was called two lines above this comment.
 function addColumns(cityPop){
 
-    $('tr').each(function(i){
-
+    $('tr').each(function(i)){
+// Here we use an if/else statement
     	if (i == 0){
-
-    		$(this).apend('<th>City Size</th>');
+// This line is saying that if i is exactly 0, then go to the line directly below.
+// If i is not equal to zero, continue through the conditional statements one at a time.
+    		$(this).append('<th>City Size</th>');
     	} else {
 
     		var citySize;
@@ -72,22 +67,22 @@ function addColumns(cityPop){
     			citySize = 'Small';
 
     		} else if (cityPop[i-1].population < 500000){
-    			citysize = 'Medium';
+    			citySize = 'Medium';
 
     		} else {
     			citySize = 'Large';
     		};
 
-    		$this.append('<td' + citySize + '</td>');
+    		$(this).append('<td' + citySize + '</td>');
     	};
     });
 };
-
+//Here below is the addEvents function that was called above.
 function addEvents(){
+// As the mouse of the user pans over the text, the color will change to a random color.
+	$("table").mouseover(function(){
 
-	$('#table').mouseover(function(){
-
-		var color = "rgb(";
+		var color = "rgb";
 
 		for (var i=0; i<3; i++){
 
@@ -105,7 +100,9 @@ function addEvents(){
 		$(this).css('color', color);
 	});
 
-	function clickme(){
+//This function will tell the user after they click on the table that 'Hey,
+// you clicked me!' in a popup small window.
+function clickme(){
 
 		alert('Hey, you clicked me!');
 	};
