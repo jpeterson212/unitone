@@ -1,10 +1,20 @@
+// Added comments above exisitng comments provided.
+
+// This function is connected to the index.html which is
+//		in the folder above this .js file and will run the 'cities' function
+// 		I built below.
+
 //initialize function called when the script loads
 function initialize(){
-	cities();
+		cities();
 };
 
 //function to create a table with cities and their populations
 function cities(){
+
+// Here we combine the city data and population data into one
+// 		condensed data set, using the least amount of code while
+// 		functioning the same as example2.3.
 	//define two arrays for cities and population
 		var cityPop = [
 				{
@@ -41,7 +51,8 @@ function cities(){
         //add the row's html string to the table
         $("table").append(rowHtml);
     };
-
+//This above is using the main.js code that we did in lab to
+// 			structure our table into rows and columns 
     addColumns(cityPop);
     addEvents();
 };
