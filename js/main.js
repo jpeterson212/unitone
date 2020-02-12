@@ -145,3 +145,24 @@ function callback(response){
 };
 
 window.onload = jsAjax();
+
+
+
+//This from example 2.5
+//define AJAX function
+function jQueryAjax(){
+    //basic jQuery ajax method
+    $.get("map.geojson", callback, "json");
+      //  dataType: "json",
+      //  success: callback
+
+};
+
+//define callback function
+function callback(response, status, jqXHRobject){
+    //tasks using the data go here
+    console.log(JSON.stringify(response));
+		console.log(response);
+};
+
+$(document).ready(jQueryAjax);
