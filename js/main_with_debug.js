@@ -45,15 +45,17 @@ function cities(){
         //add the row's html string to the table
         $("table").append(rowHtml);
     };
+		// The addColumns and addEvents will be the two functions we will be calling.
+		addColumns(cityPop);
+		addEvents();
+
 };
-// The addColumns and addEvents will be the two functions we will be calling.
-addColumns(cityPop);
-addEvents();
+
 
 // Below is the addColumns function, which was called two lines above this comment.
 function addColumns(cityPop){
 
-    $('tr').each(function(i)){
+    $('tr').each(function(i){
 // Here we use an if/else statement
     	if (i == 0){
 // This line is saying that if i is exactly 0, then go to the line directly below.
@@ -79,16 +81,21 @@ function addColumns(cityPop){
 };
 //Here below is the addEvents function that was called above.
 function addEvents(){
+	console.log("Add events!")
 // As the mouse of the user pans over the text, the color will change to a random color.
 	$("table").mouseover(function(){
 
-		var color = "rgb";
+		var color = "rgb(";
 
 		for (var i=0; i<3; i++){
-
+			console.log("here");
 			var random = Math.round(Math.random() * 255);
 
-			color += "random";
+			color += random;
+			console.log(color);
+
+			// color = color + "random"
+
 
 			if (i<2){
 				color += ",";
@@ -96,6 +103,7 @@ function addEvents(){
 			} else {
 				color += ")";
 		};
+		}
 
 		$(this).css('color', color);
 	});
