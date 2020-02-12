@@ -2,7 +2,7 @@ function initialize(){
 		cities();
 };
 
-
+// Here we create the table with city and population data.
 function cities(){
 
 		var cityPop = [
@@ -44,7 +44,8 @@ function cities(){
 };
 
 
-
+// This function adds the 'city size' column and ranks the cities into either
+// small, medium, or large.
 function addColumns(cityPop){
 		console.log("City Pop!")
     $('tr').each(function(i){
@@ -69,7 +70,8 @@ function addColumns(cityPop){
     	};
     });
 };
-
+// This function creates random color as a mouse is dragged over the texts,
+// changing the color to a random rgb value.
 function addEvents(){
 	console.log("Add events!")
 
@@ -98,7 +100,8 @@ function addEvents(){
 		$(this).css('color', color);
 	});
 
-
+// This function will run when the user clicks on the text.
+// There will be a pop up box that will alert the user with a message.
 function clickme(){
 
 		alert('Hey, you clicked me!');
