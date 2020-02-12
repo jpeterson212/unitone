@@ -147,6 +147,11 @@ function callback(response){
 window.onload = jsAjax();
 
 
+// Example 2.4
+$.ajax("map.geojson", {
+    dataType: "json",
+    success: callback
+});
 
 //This from example 2.5
 //define AJAX function
@@ -166,3 +171,61 @@ function callback(response, status, jqXHRobject){
 };
 
 $(document).ready(jQueryAjax);
+
+
+// Example 3.7
+function jQueryAjax(){
+    //define a variable to hold the data
+    var mydata;
+
+    //basic jQuery ajax method
+    $.ajax("map.geojson", {
+        dataType: "json",
+        success: function(response){
+            mydata = response;
+
+            //check the data
+            console.log(mydata);
+        }
+    });
+
+    //check the data
+    console.log(mydata);
+};
+
+
+
+// Insert call function
+function initialize_2(){
+		debugAjax();
+};
+
+
+// Debug_ajax.js is inserted below
+function debugCallback(response){
+
+
+//	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+};
+
+function debugAjax(){
+
+	var mydata;
+
+	$.ajax("map.geojson", {
+		dataType: "json",
+		success: function(response){
+
+			debugCallback(mydata);
+
+		}
+	});
+
+
+
+//	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+};
+
+//$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+$(document).ready(initialize_2);
