@@ -194,38 +194,38 @@ function jQueryAjax(){
 };
 
 
+var mydata;
+$.ajax("map.geojson", {
+	dataType: "json",
+	success: function(response){
+		mydata = response;
+	}
+});
+
+
 
 // Insert call function
 function initialize_2(){
 		debugAjax();
 };
-
-
 // Debug_ajax.js is inserted below
 function debugCallback(response){
-
-
-//	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
 };
-
 function debugAjax(){
-
-	var mydata;
-
-	$.ajax("map.geojson", {
-		dataType: "json",
-		success: function(response){
+//	var mydata;
+	//$.ajax("map.geojson", {
+		//dataType: "json",
+		//success: function(response){
+			//mydata = response;
 
 			debugCallback(mydata);
-
-		}
-	});
-
-
+//		}
+//	});
 
 //	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
 	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
 };
 
-//$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
 $(document).ready(initialize_2);
