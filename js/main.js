@@ -114,4 +114,34 @@ function clickme(){
 $(document).ready(initialize);
 
 //console.log('Hi, this is a test')
-// this...
+// this... is from example 2.3
+
+function jsAjax(){
+    // Step 1: Create the request
+    var ajaxRequest = new XMLHttpRequest();
+
+    //Step 2: Create an event handler to send received data to a callback function
+    ajaxRequest.onreadystatechange = function(){
+        if (ajaxRequest.readyState == 4){
+            callback(ajaxRequest.response);
+        };
+    };
+
+    //Step 3: Open the server connection
+    ajaxRequest.open('GET', 'map.geojson', true);
+
+    //Step 4: Set the response data type
+    ajaxRequest.responseType = "json";
+
+    //Step 5: Send the request
+    ajaxRequest.send();
+};
+
+//define callback function
+function callback(response){
+    //tasks using the data go here
+    console.log(JSON.stringify(response));
+    console.log(response);
+};
+
+window.onload = jsAjax();
