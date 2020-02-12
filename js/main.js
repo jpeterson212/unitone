@@ -1,92 +1,117 @@
-//initialize function called when the script loads
 function initialize(){
-    cities();
+		cities();
 };
 
-//function to create a table with cities and their populations
+// Here we create the table with city and population data.
 function cities(){
-    //define two arrays for cities and population
-    var cityPop = [
-        {
-            city: 'Madison',
-            population: 233209
-        },
-        {
-            city: 'Milwaukee',
-            population: 594833
-        },
-        {
-            city: 'Green Bay',
-            population: 104057
-        },
-        {
-            city: 'Superior',
-            population: 27244
-        }
-    ];
-    //append the table element to the div
-    $("#mydiv").append("<table>");
-    //append a header row to the table
-    $("table").append("<tr>");
-    //add the "City" and "Population" columns to the header row
-    $("tr").append("<th>City</th><th>Population</th>");
 
-    //loop to add a new row for each city
-    for (var i = 0; i < cityPop.length; i++){
-        //assign longer html strings to a variable
+		var cityPop = [
+				{
+						city: 'Madison',
+						population: 233209
+				},
+				{
+						city: 'Milwaukee',
+						population: 594833
+				},
+				{
+						city: 'Green Bay',
+						population: 104057
+				},
+				{
+						city: 'Superior',
+						population: 27244
+				}
+		];
+
+
+		$("#mydiv").append("<table>");
+
+		$("table").append("<tr>");
+
+		$("tr").append("<th>City</th><th>Population</th>");
+
+  	for (var i = 0; i < cityPop.length; i++){
+
         var rowHtml = "<tr><td>" + cityPop[i].city + "</td><td>" + cityPop[i].population + "</td></tr>";
-        //add the row's html string to the table
+
         $("table").append(rowHtml);
     };
-};    //Added at Example 3.5 line 44...
-    //get the div id
-    var theid = $('#mydiv').attr('id');
 
-    //theid is 'mydiv'; add it as text to the div
-    $('#mydiv').append(theid);
+		addColumns(cityPop);
+		addEvents();
 
-    //add the class 'foo' to the div
-    $('#mydiv').attr('class', 'foo');
+};
 
-    //Check your work with the Inspector!
-    //Added below Example 3.6...
-    //change the text color
-    $('#mydiv').css('color', 'red');
 
-    //change the text size and alignment
-    $('#mydiv').css({
-        'font-size': '2em',
-        'text-align': 'left'
+// This function adds the 'city size' column and ranks the cities into either
+// small, medium, or large.
+function addColumns(cityPop){
+		console.log("City Pop!")
+    $('tr').each(function(i){
+
+    	if (i == 0){
+    		$(this).append('<th>City Size</th>');
+    	} else {
+
+    		var citySize;
+
+    		if (cityPop[i-1].population < 100000){
+    			citySize = 'Small';
+
+    		} else if (cityPop[i-1].population < 500000){
+    			citySize = 'Medium';
+
+    		} else {
+    			citySize = 'Large';
+    		};
+
+    		$(this).append('<td>' + citySize + '</td>');
+    	};
     });
+};
+// This function creates random color as a mouse is dragged over the texts,
+// changing the color to a random rgb value.
+function addEvents(){
+	console.log("Add events!")
 
-    //get the text color and add it as text to the div
-    var thecolor = $('#mydiv').css('color');
-    $('#mydiv').append(thecolor);
+	$("table").mouseover(function(){
 
-    //fooled ya! thecolor is rgb(255, 0, 0), the CSS interpreter's translation of the keyword 'red'
+		var color = "rgb(";
 
-    //Added below Example 3.8...
-    //click listener with anonymous handler function
-    $('table').on('click', function(){
-        alert('Madison Rocks! Go Badgers!');
-    });
+		for (var i=0; i<3; i++){
+			console.log("here");
+			var random = Math.round(Math.random() * 255);
 
-    //alias method for the click event listener
-    $('table').click(function(){
-        alert('Visit Superior and see the big lake!');
-    });
+			color += random;
+			console.log(color);
 
-    //named handler function for removable listener
-    function clickme(){
-        alert('Yeah Green Bay! Go Packers!');
-    };
+			// color = color + "random"
 
-    //add the event listener
-    $('table').on('click', clickme);
 
-    //remove the event listener
-    $('table').off('click', clickme);
+			if (i<2){
+				color += ",";
 
+			} else {
+				color += ")";
+		};
+		}
+
+		$(this).css('color', color);
+	});
+
+// This function will run when the user clicks on the text.
+// There will be a pop up box that will alert the user with a message.
+function clickme(){
+
+		alert('Hey, you clicked me!');
+	};
+
+	$('table').on('click', clickme);
+};
 
 //call the initialize function when the document has loaded
 $(document).ready(initialize);
+
+//console.log('Hi, this is a test')
+// this...
