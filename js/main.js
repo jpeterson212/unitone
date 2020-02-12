@@ -186,11 +186,13 @@ function jQueryAjax(){
 
             //check the data
             console.log(mydata);
+						// data is accessible.
         }
     });
 
     //check the data
     console.log(mydata);
+		// data is inaccessible
 };
 
 
@@ -224,7 +226,7 @@ function debugAjax(){
 //	});
 
 //	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
-	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+  	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
 };
 
 $(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
