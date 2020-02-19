@@ -1,5 +1,6 @@
 function initialize(){
 		cities();
+		debugAjax();
 };
 
 // Here we create the table with city and population data.
@@ -110,124 +111,27 @@ function clickme(){
 	$('table').on('click', clickme);
 };
 
-//call the initialize function when the document has loaded
-$(document).ready(initialize);
 
-//console.log('Hi, this is a test')
-// this... is from example 2.3
-
-function jsAjax(){
-    // Step 1: Create the request
-    var ajaxRequest = new XMLHttpRequest();
-
-    //Step 2: Create an event handler to send received data to a callback function
-    ajaxRequest.onreadystatechange = function(){
-        if (ajaxRequest.readyState == 4){
-            callback(ajaxRequest.response);
-        };
-    };
-
-    //Step 3: Open the server connection
-    ajaxRequest.open('GET', 'map.geojson', true);
-
-    //Step 4: Set the response data type
-    ajaxRequest.responseType = "json";
-
-    //Step 5: Send the request
-    ajaxRequest.send();
-};
-
-//define callback function
-function callback(response){
-    //tasks using the data go here
-    console.log(JSON.stringify(response));
-    console.log(response);
-};
-
-window.onload = jsAjax();
-
-
-// Example 2.4
-$.ajax("map.geojson", {
-    dataType: "json",
-    success: callback
-});
-
-//This from example 2.5
-//define AJAX function
-function jQueryAjax(){
-    //basic jQuery ajax method
-    $.get("map.geojson", callback, "json");
-      //  dataType: "json",
-      //  success: callback
-
-};
-
-//define callback function
-function callback(response, status, jqXHRobject){
-    //tasks using the data go here
-    console.log(JSON.stringify(response));
-		console.log(response);
-};
-
-$(document).ready(jQueryAjax);
-
-
-// Example 3.7
-function jQueryAjax(){
-    //define a variable to hold the data
-    var mydata;
-
-    //basic jQuery ajax method
-    $.ajax("map.geojson", {
-        dataType: "json",
-        success: function(response){
-            mydata = response;
-
-            //check the data
-            console.log(mydata);
-						// data is accessible.
-        }
-    });
-
-    //check the data
-    console.log(mydata);
-		// data is inaccessible
-};
-
-
-var mydata;
-$.ajax("map.geojson", {
-	dataType: "json",
-	success: function(response){
-		mydata = response;
-	}
-});
-
-
-
-// Insert call function
-function initialize_2(){
-		debugAjax();
-};
 // Debug_ajax.js is inserted below
-function debugCallback(response){
+function debugCallback(mydata){
+
 	$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+
 };
+
 function debugAjax(){
-//	var mydata;
-	//$.ajax("map.geojson", {
-		//dataType: "json",
-		//success: function(response){
-			//mydata = response;
+	var mydata;
+
+	$.ajax("map.geojson", {
+		dataType: "json",
+		success: function(response){
+			mydata = response;
 
 			debugCallback(mydata);
-//		}
-//	});
+		}
+	});
 
-//	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
-  	$(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
 };
 
-$(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
-$(document).ready(initialize_2);
+
+$(document).ready(initialize);
